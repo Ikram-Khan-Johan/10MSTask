@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0415ED6F29C32C5D007C5A9A /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415ED6E29C32C5D007C5A9A /* CategoryTableViewCell.swift */; };
+		0415ED7129C333AE007C5A9A /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415ED7029C333AE007C5A9A /* CategoryCollectionViewCell.swift */; };
 		047D396229C2EFCD00CECDA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D396129C2EFCD00CECDA5 /* AppDelegate.swift */; };
 		047D396429C2EFCD00CECDA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D396329C2EFCD00CECDA5 /* SceneDelegate.swift */; };
 		047D396629C2EFCD00CECDA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D396529C2EFCD00CECDA5 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0415ED6E29C32C5D007C5A9A /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		0415ED7029C333AE007C5A9A /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		047D395E29C2EFCD00CECDA5 /* 10MSTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 10MSTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047D396129C2EFCD00CECDA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		047D396329C2EFCD00CECDA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				047D396C29C2EFCF00CECDA5 /* LaunchScreen.storyboard */,
 				047D396F29C2EFCF00CECDA5 /* Info.plist */,
 				047D397829C2FE5200CECDA5 /* MainViewController.swift */,
+				0415ED6E29C32C5D007C5A9A /* CategoryTableViewCell.swift */,
+				0415ED7029C333AE007C5A9A /* CategoryCollectionViewCell.swift */,
 			);
 			path = 10MSTask;
 			sourceTree = "<group>";
@@ -157,6 +163,8 @@
 				047D396229C2EFCD00CECDA5 /* AppDelegate.swift in Sources */,
 				047D396429C2EFCD00CECDA5 /* SceneDelegate.swift in Sources */,
 				047D397929C2FE5200CECDA5 /* MainViewController.swift in Sources */,
+				0415ED7129C333AE007C5A9A /* CategoryCollectionViewCell.swift in Sources */,
+				0415ED6F29C32C5D007C5A9A /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,16 +16,93 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NLi-Jb-FWb">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTableViewCell" rowHeight="200" id="8vL-gL-eyS" customClass="CategoryTableViewCell" customModule="_0MSTask" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8vL-gL-eyS" id="RY1-d1-icx">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-Cf-bfy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="y51-9Y-4Lv">
+                                                        <size key="itemSize" width="170" height="170"/>
+                                                        <size key="estimatedItemSize" width="170" height="170"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCollectionViewCell" id="mmg-I7-TpJ" customClass="CategoryCollectionViewCell" customModule="_0MSTask" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="15" width="170" height="170"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bvb-WB-RFl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding_4" translatesAutoresizingMaskIntoConstraints="NO" id="gge-7m-sDq">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="gge-7m-sDq" firstAttribute="leading" secondItem="bvb-WB-RFl" secondAttribute="leading" id="72f-mg-Z3f"/>
+                                                                    <constraint firstItem="gge-7m-sDq" firstAttribute="top" secondItem="bvb-WB-RFl" secondAttribute="top" id="8xA-wZ-eD3"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="gge-7m-sDq" secondAttribute="bottom" id="AbA-IX-trL"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gge-7m-sDq" secondAttribute="trailing" id="VgW-Cw-rdX"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="170" height="170"/>
+                                                            <connections>
+                                                                <outlet property="imageView" destination="gge-7m-sDq" id="1cr-xE-dl6"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="kd3-Cf-bfy" secondAttribute="bottom" id="QGR-dd-X7N"/>
+                                                <constraint firstAttribute="trailing" secondItem="kd3-Cf-bfy" secondAttribute="trailing" id="mZY-KZ-8Cg"/>
+                                                <constraint firstItem="kd3-Cf-bfy" firstAttribute="top" secondItem="RY1-d1-icx" secondAttribute="top" id="p6q-Wn-5Ol"/>
+                                                <constraint firstItem="kd3-Cf-bfy" firstAttribute="leading" secondItem="RY1-d1-icx" secondAttribute="leading" id="sdS-03-a24"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryCollectionView" destination="kd3-Cf-bfy" id="Ubp-d6-bJl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="pMC-hg-RkJ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Usk-fU-yeW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NLi-Jb-FWb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YBd-ns-ZJu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NLi-Jb-FWb" secondAttribute="bottom" id="YBo-el-Gwo"/>
+                            <constraint firstItem="NLi-Jb-FWb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YzU-Zw-cij"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NLi-Jb-FWb" secondAttribute="trailing" id="jUN-fh-HN1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="categoryTableView" destination="NLi-Jb-FWb" id="ym6-2Q-CLu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55" y="-34"/>
+            <point key="canvasLocation" x="54.198473282442748" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>
+        <image name="img_onboarding_4" width="228" height="183"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

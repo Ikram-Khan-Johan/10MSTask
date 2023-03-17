@@ -6,9 +6,16 @@
 //
 
 import UIKit
+var data = [MovieData(sectionType: "Action", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
+            MovieData(sectionType: "Science Fiction", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
+            MovieData(sectionType: "Drama", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
+            MovieData(sectionType: "Love Story", movies: ["007", "Mission Impossible", "Mission Impossible2"])
+]
+
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var categoryTableView: UITableView!
     var products: Products?
     let baseURL: String = "https://fakestoreapi.com/products"
     override func viewDidLoad() {
@@ -65,4 +72,35 @@ class MainViewController: UIViewController {
         
         dataTask.resume()
     }
+}
+
+
+extension MainViewController: UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
+        cell.categoryCollectionView.tag = indexPath.section
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = .green
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return data[section].sectionType
+    }
+    
+}
+struct MovieData {
+    let sectionType: String
+    let movies: [String]
 }
