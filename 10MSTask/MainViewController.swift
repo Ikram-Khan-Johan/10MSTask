@@ -11,25 +11,49 @@ var data = [MovieData(sectionType: "Action", movies: ["007", "Mission Impossible
             MovieData(sectionType: "Drama", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
             MovieData(sectionType: "Love Story", movies: ["007", "Mission Impossible", "Mission Impossible2"])
 ]
-
-
+var categories: [String] = []
+var productDict = [String: [Product]]()
 class MainViewController: UIViewController {
 
     @IBOutlet weak var categoryTableView: UITableView!
     var products: Products?
-    let baseURL: String = "https://fakestoreapi.com/products"
+    let baseURL: String = "http://139.162.30.73:2424/products"
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         fetchProductData(url: baseURL) { result in
             self.products = result
-            
-            print(self.products![2].title )
+            self.findCategory(products: self.products!)
+            //print(self.products![7].category )
+            //print("Ta da", categories)
+            DispatchQueue.main.async {
+                self.categoryTableView.reloadData()
+            }
         }
         // Do any additional setup after loading the view.
     }
     
+    func findCategory(products: Products) {
 
+        for i in products {
+            //print("Hello ",i.id)
+       
+            if !categories.contains(i.category) {
+                categories.append(i.category)
+            }
+            let keyExists = productDict[i.category] != nil
+            if keyExists==false {
+                productDict[i.category] = [i]
+            } else {
+                productDict[i.category]?.append(i)
+            }
+            //print(keyExists, i.id)
+        }
+        print(productDict["electronics"]?.count)
+        print(productDict["jewelery"]?.count)
+        print(productDict["men's clothing"]?.count)
+        print(productDict["women's clothing"]?.count)
+    }
     /*
     // MARK: - Navigation
 
@@ -83,11 +107,13 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         cell.categoryCollectionView.tag = indexPath.section
+        //print("tag ",cell.categoryCollectionView.tag)
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count
+        //return data.count
+        return productDict.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
@@ -96,11 +122,26 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
         view.tintColor = .green
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return data[section].sectionType
+        return Array(productDict)[section].key
     }
     
 }
 struct MovieData {
     let sectionType: String
     let movies: [String]
+}
+
+extension UIImageView {
+    
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }

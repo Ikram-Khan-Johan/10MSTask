@@ -27,13 +27,24 @@ class CategoryTableViewCell: UITableViewCell {
 
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data[section].movies.count
+        //return data[section].movies.count
+        print("total products ",section, Array(productDict)[collectionView.tag].value.count)
+        return Array(productDict)[collectionView.tag].value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
-        cell.imageView.image = UIImage(named: "img_onboarding_4")
+        
+        let iconLink = Array(productDict)[collectionView.tag].value[indexPath.row].image
+
+        if let url = URL(string: iconLink) {
+            cell.imageView.load(url: url)
+        } else {
+            print("image url not found")
+        }
+        //cell.imageView.image = UIImage(named: "img_onboarding_4")
         return cell
     }
     

@@ -12,7 +12,7 @@ struct Product: Codable {
     let title: String
     let price: Double
     let description: String
-    let category: Category
+    let category: String
     let image: String
     let rating: Rating
 
@@ -46,3 +46,4 @@ struct Rating: Codable {
 }
 
 typealias Products = [Product]
+
