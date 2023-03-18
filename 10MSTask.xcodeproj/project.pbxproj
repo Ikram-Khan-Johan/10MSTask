@@ -17,6 +17,8 @@
 		047D396E29C2EFCF00CECDA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047D396C29C2EFCF00CECDA5 /* LaunchScreen.storyboard */; };
 		047D397729C2FD4000CECDA5 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D397629C2FD4000CECDA5 /* Products.swift */; };
 		047D397929C2FE5200CECDA5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D397829C2FE5200CECDA5 /* MainViewController.swift */; };
+		0483433429C5FB2400CDBBF8 /* CatWiseProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483433329C5FB2400CDBBF8 /* CatWiseProductsViewController.swift */; };
+		0483433629C613E500CDBBF8 /* CatWiseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483433529C613E500CDBBF8 /* CatWiseCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		047D396F29C2EFCF00CECDA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047D397629C2FD4000CECDA5 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		047D397829C2FE5200CECDA5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0483433329C5FB2400CDBBF8 /* CatWiseProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWiseProductsViewController.swift; sourceTree = "<group>"; };
+		0483433529C613E500CDBBF8 /* CatWiseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWiseCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				047D397829C2FE5200CECDA5 /* MainViewController.swift */,
 				0415ED6E29C32C5D007C5A9A /* CategoryTableViewCell.swift */,
 				0415ED7029C333AE007C5A9A /* CategoryCollectionViewCell.swift */,
+				0483433329C5FB2400CDBBF8 /* CatWiseProductsViewController.swift */,
+				0483433529C613E500CDBBF8 /* CatWiseCollectionViewCell.swift */,
 			);
 			path = 10MSTask;
 			sourceTree = "<group>";
@@ -158,7 +164,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0483433629C613E500CDBBF8 /* CatWiseCollectionViewCell.swift in Sources */,
 				047D396629C2EFCD00CECDA5 /* ViewController.swift in Sources */,
+				0483433429C5FB2400CDBBF8 /* CatWiseProductsViewController.swift in Sources */,
 				047D397729C2FD4000CECDA5 /* Products.swift in Sources */,
 				047D396229C2EFCD00CECDA5 /* AppDelegate.swift in Sources */,
 				047D396429C2EFCD00CECDA5 /* SceneDelegate.swift in Sources */,

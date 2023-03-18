@@ -36,7 +36,9 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
-        
+        cell.tag = indexPath.row
+        cell.nameLabel.text = Array(productDict)[collectionView.tag].value[indexPath.row].title
+        cell.priceLabel.text = String(Array(productDict)[collectionView.tag].value[indexPath.row].price)
         let iconLink = Array(productDict)[collectionView.tag].value[indexPath.row].image
 
         if let url = URL(string: iconLink) {
@@ -46,6 +48,9 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         }
         //cell.imageView.image = UIImage(named: "img_onboarding_4")
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
     
     
