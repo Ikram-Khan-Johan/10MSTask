@@ -42,7 +42,8 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
         let product = products[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatWiseCollectionViewCell", for: indexPath) as! CatWiseCollectionViewCell
         cell.titleLabel.text = product.title
-        cell.priceLabel.text = "\(product.price)"
+        cell.priceLabel.text = "$\(product.price)"
+        cell.layer.cornerRadius = 10
         if let url = URL(string: product.image) {
             cell.productImageView.load(url: url)
         }

@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var categoryTableView: UITableView!
     var products: Products?
-    let baseURL: String = "https://fakestoreapi.com/products"
+    let baseURL: String = "http://139.162.30.73:2424/products"
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,7 +126,7 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
         return 200
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = .green
+        view.tintColor = .systemGray5
     }
     //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     //        return Array(productDict)[section].key
@@ -141,15 +141,24 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
          return button*/
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
                                                                 "sectionHeader") as! MyCustomHeader
-        view.title.text = Array(productDict)[section].key
-        view.button.titleLabel?.text = "See All >"
+        view.title.text = Array(productDict)[section].key.capitalized
+        view.title.font = view.title.font.withSize(20)
+        view.title.shadowColor = .white
+        view.title.shadowOffset = CGSize(width: 1, height: 1)
+        
+        //view.button.titleLabel?.text = "See All >"
         view.button.setTitle("See All >", for: UIControl.State.normal)
-        view.button.backgroundColor = .darkGray
+        view.button.setTitleColor(.black, for: UIControl.State.normal)
+        view.button.backgroundColor = .white
+        view.button.layer.cornerRadius = 15
         view.button.tag = section
         view.button.addTarget(self, action: #selector(self.onClickSeeAllButton(button:)), for: .touchUpInside)
         // view.image.image = UIImage(named: sectionImages[section])
         
         return view
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
     
 }
