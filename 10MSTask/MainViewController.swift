@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var categoryTableView: UITableView!
     var products: Products?
-    let baseURL: String = "http://139.162.30.73:2424/products"
+    let baseURL: String = "https://fakestoreapi.com/products"
     override func viewDidLoad() {
         super.viewDidLoad()
         

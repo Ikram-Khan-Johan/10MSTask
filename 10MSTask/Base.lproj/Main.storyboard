@@ -223,11 +223,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="oWV-oJ-Ypt">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWV-oJ-Ypt">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2i-Ws-aXq">
-                                        <rect key="frame" x="8" y="18" width="376.33333333333331" height="2000"/>
+                                        <rect key="frame" x="8" y="18" width="376.33333333333331" height="923"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l3k-Wk-Q0R">
                                                 <rect key="frame" x="8" y="8" width="360" height="360"/>
@@ -307,10 +307,12 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="I2i-Ws-aXq" secondAttribute="bottom" constant="-1259" id="3Mh-hW-6ek"/>
+                                    <constraint firstAttribute="bottom" secondItem="I2i-Ws-aXq" secondAttribute="bottom" id="3Mh-hW-6ek"/>
+                                    <constraint firstAttribute="width" constant="393" id="Dkg-77-cf1"/>
                                     <constraint firstItem="I2i-Ws-aXq" firstAttribute="leading" secondItem="oWV-oJ-Ypt" secondAttribute="leading" constant="8" id="n2R-wr-cxh"/>
                                     <constraint firstItem="I2i-Ws-aXq" firstAttribute="top" secondItem="oWV-oJ-Ypt" secondAttribute="top" constant="18" id="pfd-W3-USe"/>
-                                    <constraint firstItem="I2i-Ws-aXq" firstAttribute="height" secondItem="oWV-oJ-Ypt" secondAttribute="height" multiplier="0.952569" priority="250" constant="1277.000129" id="uIy-KC-8Cl"/>
+                                    <constraint firstAttribute="height" constant="759" id="r8h-5o-0YO"/>
+                                    <constraint firstItem="I2i-Ws-aXq" firstAttribute="height" secondItem="oWV-oJ-Ypt" secondAttribute="height" multiplier="0.952569" priority="250" constant="200" id="uIy-KC-8Cl"/>
                                     <constraint firstAttribute="trailing" secondItem="I2i-Ws-aXq" secondAttribute="trailing" constant="8.6666666666666856" id="xsk-dC-0a4"/>
                                 </constraints>
                             </scrollView>
