@@ -20,8 +20,6 @@
 		0483433429C5FB2400CDBBF8 /* CatWiseProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483433329C5FB2400CDBBF8 /* CatWiseProductsViewController.swift */; };
 		0483433629C613E500CDBBF8 /* CatWiseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483433529C613E500CDBBF8 /* CatWiseCollectionViewCell.swift */; };
 		0483433829C6343900CDBBF8 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483433729C6343900CDBBF8 /* ProductDetailsViewController.swift */; };
-		04AFCC1429C6DCE600D9E5EA /* DelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AFCC1329C6DCE600D9E5EA /* DelegateViewController.swift */; };
-		04AFCC1629C6DE0C00D9E5EA /* DelegateTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AFCC1529C6DE0C00D9E5EA /* DelegateTVC.swift */; };
 		04AFCC1829C7417E00D9E5EA /* MyCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AFCC1729C7417E00D9E5EA /* MyCustomHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +39,6 @@
 		0483433329C5FB2400CDBBF8 /* CatWiseProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWiseProductsViewController.swift; sourceTree = "<group>"; };
 		0483433529C613E500CDBBF8 /* CatWiseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWiseCollectionViewCell.swift; sourceTree = "<group>"; };
 		0483433729C6343900CDBBF8 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
-		04AFCC1329C6DCE600D9E5EA /* DelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewController.swift; sourceTree = "<group>"; };
-		04AFCC1529C6DE0C00D9E5EA /* DelegateTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateTVC.swift; sourceTree = "<group>"; };
 		04AFCC1729C7417E00D9E5EA /* MyCustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,8 +85,6 @@
 				0415ED7029C333AE007C5A9A /* CategoryCollectionViewCell.swift */,
 				0483433329C5FB2400CDBBF8 /* CatWiseProductsViewController.swift */,
 				0483433529C613E500CDBBF8 /* CatWiseCollectionViewCell.swift */,
-				04AFCC1329C6DCE600D9E5EA /* DelegateViewController.swift */,
-				04AFCC1529C6DE0C00D9E5EA /* DelegateTVC.swift */,
 				0483433729C6343900CDBBF8 /* ProductDetailsViewController.swift */,
 				04AFCC1729C7417E00D9E5EA /* MyCustomHeader.swift */,
 			);
@@ -176,11 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04AFCC1429C6DCE600D9E5EA /* DelegateViewController.swift in Sources */,
 				0483433629C613E500CDBBF8 /* CatWiseCollectionViewCell.swift in Sources */,
 				047D396629C2EFCD00CECDA5 /* ViewController.swift in Sources */,
 				0483433429C5FB2400CDBBF8 /* CatWiseProductsViewController.swift in Sources */,
-				04AFCC1629C6DE0C00D9E5EA /* DelegateTVC.swift in Sources */,
 				0483433829C6343900CDBBF8 /* ProductDetailsViewController.swift in Sources */,
 				047D397729C2FD4000CECDA5 /* Products.swift in Sources */,
 				047D396229C2EFCD00CECDA5 /* AppDelegate.swift in Sources */,
