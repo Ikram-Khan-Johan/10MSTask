@@ -13,13 +13,17 @@ var data = [MovieData(sectionType: "Action", movies: ["007", "Mission Impossible
 ]
 var categories: [String] = []
 var productDict = [String: [Product]]()
-class MainViewController: UIViewController {
+
+
+class MainViewController: UIViewController, CVCDelegate {
+
 
     @IBOutlet weak var categoryTableView: UITableView!
     var products: Products?
     let baseURL: String = "http://139.162.30.73:2424/products"
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         categoryTableView.register(MyCustomHeader.self,
               forHeaderFooterViewReuseIdentifier: "sectionHeader")
         fetchProductData(url: baseURL) { result in
@@ -55,29 +59,46 @@ class MainViewController: UIViewController {
         print(productDict["men's clothing"]?.count)
         print(productDict["women's clothing"]?.count)
     }
+    
+    func onSelectItem(product: Product) {
+        print("navigating to product page...")
+        if product == nil {
+            print("No product found")
+            return
+        }
+        print(product.title)
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        let vc = st.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        vc.productData(product: product)
+      
+        self.present(vc, animated:true)
+    }
+    
     @objc func onClickSeeAllButton(button: UIButton){
        
+        let products = Array(productDict)[button.tag].value
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CatWiseProductsViewController") as! CatWiseProductsViewController
            // guard let person = self.person else {print("no data found");
                // return}
             //nextViewController.sendUserData(person: person)
+        nextViewController.cvcDelegate = self
         nextViewController.categoryId(id: button.tag)
+        nextViewController.configureCell(_products: products)
             nextViewController.modalPresentationStyle = .fullScreen
-            self.present(nextViewController, animated:true)
+            //self.present(nextViewController, animated:true)
+        self.navigationController?.pushViewController(nextViewController, animated: true)
             
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func moveToNextViewController(nextViewController: UIViewController?){
+        guard let vc = nextViewController else {return}
+        print("Moving....", nextViewController)
+        //self.present(nextViewController, animated: true)
+        self.navigationController?.pushViewController(nextViewController!, animated: true)
     }
-    */
-
+  
     func fetchProductData(url: String, completion: @escaping (Products)-> Void){
         guard let url = URL(string: url) else {
             print("url String convert failed")
@@ -114,21 +135,27 @@ class MainViewController: UIViewController {
 
 
 extension MainViewController: UITableViewDelegate,UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //return data.count
+        return productDict.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
-        cell.categoryCollectionView.tag = indexPath.section
-        print("tag ",cell.categoryCollectionView.tag)
+//        cell.categoryCollectionView.tag = indexPath.section
+//        print("tag ",cell.categoryCollectionView.tag)
+        let products = Array(productDict)[indexPath.section].value
+        cell.configureCell(_products: products)
+        cell.cvcDelegate = self
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        //return data.count
-        return productDict.count
-    }
+  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
@@ -228,3 +255,5 @@ class MyCustomHeader: UITableViewHeaderFooterView {
         ])
     }
 }
+
+

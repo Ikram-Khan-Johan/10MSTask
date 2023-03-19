@@ -47,3 +47,10 @@ struct Rating: Codable {
 
 typealias Products = [Product]
 
+
+struct ProductWithCategory {
+    let name: String
+    let products: [Products]
+}
+
+

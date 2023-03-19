@@ -9,7 +9,9 @@ import UIKit
 
 class CatWiseProductsViewController: UIViewController {
 
+    var products: Products = []
     var categoryId: Int = 0
+    var cvcDelegate: CVCDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +20,9 @@ class CatWiseProductsViewController: UIViewController {
     }
     
 
+    func configureCell(_products: Products) {
+        self.products = _products
+    }
     /*
     // MARK: - Navigation
 
@@ -41,18 +46,31 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let product = products[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatWiseCollectionViewCell", for: indexPath) as! CatWiseCollectionViewCell
-        cell.titleLabel.text = Array(productDict)[categoryId].value[indexPath.row].title
-        cell.priceLabel.text = String(Array(productDict)[categoryId].value[indexPath.row].price)
+        cell.titleLabel.text = product.title
+        cell.priceLabel.text = "\(product.price)"
         //cell.titleLabel.text = "HUrrah"
         //cell.priceLabel.text = "200"
-        cell.productImageView.image = UIImage(named: "img_onboarding_4")
+//        cell.productImageView.image = UIImage(named: "img_onboarding_4")
+       
+        if let url = URL(string: product.image) {
+            cell.productImageView.load(url: url)
+        }
+        else {
+            print("No Image Found")
+        }
         return cell
         
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width/2, height: 200)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Item Selected ", indexPath)
+        let product = products[indexPath.row];       cvcDelegate?.onSelectItem(product: product)
+    
     }
     
 }
