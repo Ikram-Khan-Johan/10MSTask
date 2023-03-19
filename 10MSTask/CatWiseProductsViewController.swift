@@ -18,20 +18,11 @@ class CatWiseProductsViewController: UIViewController {
         print("I am running")
         // Do any additional setup after loading the view.
     }
-    
 
     func configureCell(_products: Products) {
         self.products = _products
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
     func categoryId(id: Int){
         self.categoryId = id
         print("Cat id ", categoryId)
@@ -41,11 +32,13 @@ class CatWiseProductsViewController: UIViewController {
 
 extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         print("Hello")
         return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let product = products[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatWiseCollectionViewCell", for: indexPath) as! CatWiseCollectionViewCell
         cell.titleLabel.text = product.title
@@ -61,10 +54,12 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: (collectionView.frame.width/2) - 20, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         print("Item Selected ", indexPath)
         let product = products[indexPath.row]
         cvcDelegate?.onSelectItem(product: product)

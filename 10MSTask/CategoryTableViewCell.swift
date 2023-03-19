@@ -39,6 +39,7 @@ class CategoryTableViewCell: UITableViewCell {
 }
 
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
         return products?.count ?? 0
@@ -52,25 +53,14 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         let product = products?[indexPath.row]
         
         cell.nameLabel.text = product?.title
-        cell.priceLabel.text = "\(product?.price)"
+        cell.priceLabel.text = "\(product?.price ?? 0)"
         
         if let url = URL(string: product?.image ?? "") {
             cell.imageView.load(url: url)
         } else {
             print("image url not found")
         }
-        
-//        cell.tag = indexPath.row
-//        cell.nameLabel.text = Array(productDict)[collectionView.tag].value[indexPath.row].title
-//        cell.priceLabel.text = String(Array(productDict)[collectionView.tag].value[indexPath.row].price)
-//        let iconLink = Array(productDict)[collectionView.tag].value[indexPath.row].image
-//
-//        if let url = URL(string: iconLink) {
-//            cell.imageView.load(url: url)
-//        } else {
-//            print("image url not found")
-//        }
-        //cell.imageView.image = UIImage(named: "img_onboarding_4")
+
         return cell
     }
     

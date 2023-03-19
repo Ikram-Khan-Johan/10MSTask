@@ -221,7 +221,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWV-oJ-Ypt">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="oWV-oJ-Ypt">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2i-Ws-aXq">
@@ -320,6 +320,7 @@
                         <outlet property="categoryLabel" destination="FdN-Wn-5le" id="ysX-5x-3Ye"/>
                         <outlet property="descriptionLabel" destination="mix-Vc-DvZ" id="NJ0-8m-D3e"/>
                         <outlet property="productImageView" destination="l3k-Wk-Q0R" id="j0L-5u-vao"/>
+                        <outlet property="productScrollView" destination="oWV-oJ-Ypt" id="BGt-Z8-VeO"/>
                         <outlet property="ratingLabel" destination="Shg-Lj-MpI" id="1x0-Pe-yVl"/>
                         <outlet property="titleLabel" destination="Ufi-MM-81N" id="kYy-Yl-pC0"/>
                         <outlet property="totalCountLabel" destination="DTT-np-gO5" id="YIs-hz-Nim"/>

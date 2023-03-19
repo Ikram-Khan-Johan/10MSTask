@@ -22,6 +22,7 @@
 		0483433829C6343900CDBBF8 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483433729C6343900CDBBF8 /* ProductDetailsViewController.swift */; };
 		04AFCC1429C6DCE600D9E5EA /* DelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AFCC1329C6DCE600D9E5EA /* DelegateViewController.swift */; };
 		04AFCC1629C6DE0C00D9E5EA /* DelegateTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AFCC1529C6DE0C00D9E5EA /* DelegateTVC.swift */; };
+		04AFCC1829C7417E00D9E5EA /* MyCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AFCC1729C7417E00D9E5EA /* MyCustomHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		0483433729C6343900CDBBF8 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		04AFCC1329C6DCE600D9E5EA /* DelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewController.swift; sourceTree = "<group>"; };
 		04AFCC1529C6DE0C00D9E5EA /* DelegateTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateTVC.swift; sourceTree = "<group>"; };
+		04AFCC1729C7417E00D9E5EA /* MyCustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				04AFCC1329C6DCE600D9E5EA /* DelegateViewController.swift */,
 				04AFCC1529C6DE0C00D9E5EA /* DelegateTVC.swift */,
 				0483433729C6343900CDBBF8 /* ProductDetailsViewController.swift */,
+				04AFCC1729C7417E00D9E5EA /* MyCustomHeader.swift */,
 			);
 			path = 10MSTask;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				0483433829C6343900CDBBF8 /* ProductDetailsViewController.swift in Sources */,
 				047D397729C2FD4000CECDA5 /* Products.swift in Sources */,
 				047D396229C2EFCD00CECDA5 /* AppDelegate.swift in Sources */,
+				04AFCC1829C7417E00D9E5EA /* MyCustomHeader.swift in Sources */,
 				047D396429C2EFCD00CECDA5 /* SceneDelegate.swift in Sources */,
 				047D397929C2FE5200CECDA5 /* MainViewController.swift in Sources */,
 				0415ED7129C333AE007C5A9A /* CategoryCollectionViewCell.swift in Sources */,

@@ -9,6 +9,7 @@ import UIKit
 
 class ProductDetailsViewController: UIViewController {
 
+    @IBOutlet weak var productScrollView: UIScrollView!
     var product: Product?
     @IBOutlet weak var productImageView: UIImageView!
     
@@ -19,7 +20,7 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        productScrollView.contentSize = CGSize(width: productScrollView.contentSize.width, height: 2000)
         showProductDetails()
         // Do any additional setup after loading the view.
     }
@@ -30,8 +31,8 @@ class ProductDetailsViewController: UIViewController {
             return}
         titleLabel.text = product.title
         categoryLabel.text = product.category
-        ratingLabel.text = String(product.rating.rate)
-        totalCountLabel.text = String(product.rating.count)
+        ratingLabel.text = "Rating: "+String(product.rating.rate)
+        totalCountLabel.text = "Total Review: "+String(product.rating.count)
         descriptionLabel.text = product.description + "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32."
         if let url = URL(string: product.image) {
             productImageView.load(url: url)
@@ -47,15 +48,4 @@ class ProductDetailsViewController: UIViewController {
         print("ID ", product.id)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
