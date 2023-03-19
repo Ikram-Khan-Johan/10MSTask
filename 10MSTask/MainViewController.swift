@@ -6,26 +6,24 @@
 //
 
 import UIKit
-var data = [MovieData(sectionType: "Action", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
-            MovieData(sectionType: "Science Fiction", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
-            MovieData(sectionType: "Drama", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
-            MovieData(sectionType: "Love Story", movies: ["007", "Mission Impossible", "Mission Impossible2"])
-]
-var categories: [String] = []
-var productDict = [String: [Product]]()
+//var data = [MovieData(sectionType: "Action", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
+//            MovieData(sectionType: "Science Fiction", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
+//            MovieData(sectionType: "Drama", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
+//            MovieData(sectionType: "Love Story", movies: ["007", "Mission Impossible", "Mission Impossible2"])
+//]
 
-
-class MainViewController: UIViewController, CVCDelegate {
-
-
+class MainViewController: UIViewController {
+    
+    var productDict = [String: [Product]]()
+    
     @IBOutlet weak var categoryTableView: UITableView!
     var products: Products?
-    let baseURL: String = "http://139.162.30.73:2424/products"
+    let baseURL: String = "https://fakestoreapi.com/products"
     override func viewDidLoad() {
         super.viewDidLoad()
         
         categoryTableView.register(MyCustomHeader.self,
-              forHeaderFooterViewReuseIdentifier: "sectionHeader")
+                                   forHeaderFooterViewReuseIdentifier: "sectionHeader")
         fetchProductData(url: baseURL) { result in
             self.products = result
             self.findCategory(products: self.products!)
@@ -39,13 +37,9 @@ class MainViewController: UIViewController, CVCDelegate {
     }
     
     func findCategory(products: Products) {
-
+        
         for i in products {
             //print("Hello ",i.id)
-       
-            if !categories.contains(i.category) {
-                categories.append(i.category)
-            }
             let keyExists = productDict[i.category] != nil
             if keyExists==false {
                 productDict[i.category] = [i]
@@ -54,51 +48,23 @@ class MainViewController: UIViewController, CVCDelegate {
             }
             //print(keyExists, i.id)
         }
-        print(productDict["electronics"]?.count)
-        print(productDict["jewelery"]?.count)
-        print(productDict["men's clothing"]?.count)
-        print(productDict["women's clothing"]?.count)
-    }
-    
-    func onSelectItem(product: Product) {
-        print("navigating to product page...")
-        if product == nil {
-            print("No product found")
-            return
-        }
-        print(product.title)
-        let st = UIStoryboard(name: "Main", bundle: nil)
-        let vc = st.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
-        vc.productData(product: product)
-      
-        self.present(vc, animated:true)
-    }
-    
-    @objc func onClickSeeAllButton(button: UIButton){
-       
-        let products = Array(productDict)[button.tag].value
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CatWiseProductsViewController") as! CatWiseProductsViewController
-           // guard let person = self.person else {print("no data found");
-               // return}
-            //nextViewController.sendUserData(person: person)
-        nextViewController.cvcDelegate = self
-        nextViewController.categoryId(id: button.tag)
-        nextViewController.configureCell(_products: products)
-            nextViewController.modalPresentationStyle = .fullScreen
-            //self.present(nextViewController, animated:true)
-        self.navigationController?.pushViewController(nextViewController, animated: true)
-            
         
     }
     
-    func moveToNextViewController(nextViewController: UIViewController?){
-        guard let vc = nextViewController else {return}
-        print("Moving....", nextViewController)
-        //self.present(nextViewController, animated: true)
-        self.navigationController?.pushViewController(nextViewController!, animated: true)
+    @objc func onClickSeeAllButton(button: UIButton){
+        
+        let products = Array(productDict)[button.tag].value
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CatWiseProductsViewController") as! CatWiseProductsViewController
+        nextViewController.cvcDelegate = self
+        nextViewController.categoryId(id: button.tag)
+        nextViewController.configureCell(_products: products)
+        nextViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        
     }
-  
+    
+    
     func fetchProductData(url: String, completion: @escaping (Products)-> Void){
         guard let url = URL(string: url) else {
             print("url String convert failed")
@@ -146,48 +112,59 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
-//        cell.categoryCollectionView.tag = indexPath.section
-//        print("tag ",cell.categoryCollectionView.tag)
         let products = Array(productDict)[indexPath.section].value
         cell.configureCell(_products: products)
         cell.cvcDelegate = self
         return cell
+        
     }
     
-  
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .green
     }
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return Array(productDict)[section].key
-//    }
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //        return Array(productDict)[section].key
+    //    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-      
-       /* let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        button.backgroundColor = .lightGray
-        button.setTitle("See All >", for: .normal)
-        button.tag = section
-        //button.addTarget(self, action: #selector(self.buttonAction(button:)), for: .touchUpInside)
-        return button*/
+        
+        /* let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
+         button.backgroundColor = .lightGray
+         button.setTitle("See All >", for: .normal)
+         button.tag = section
+         //button.addTarget(self, action: #selector(self.buttonAction(button:)), for: .touchUpInside)
+         return button*/
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-                       "sectionHeader") as! MyCustomHeader
-           view.title.text = Array(productDict)[section].key
+                                                                "sectionHeader") as! MyCustomHeader
+        view.title.text = Array(productDict)[section].key
         view.button.titleLabel?.text = "See All >"
         view.button.setTitle("See All >", for: UIControl.State.normal)
         view.button.backgroundColor = .darkGray
         view.button.tag = section
         view.button.addTarget(self, action: #selector(self.onClickSeeAllButton(button:)), for: .touchUpInside)
-          // view.image.image = UIImage(named: sectionImages[section])
-
-           return view
-      
+        // view.image.image = UIImage(named: sectionImages[section])
+        
+        return view
     }
     
+}
+
+extension MainViewController: CVCDelegate {
     
+    func onSelectItem(product: Product) {
+        
+        print("navigating to product page...")
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        let vc = st.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        vc.productData(product: product)
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 struct MovieData {
     let sectionType: String
@@ -213,7 +190,7 @@ class MyCustomHeader: UITableViewHeaderFooterView {
     let title = UILabel()
     //let image = UIImageView()
     let button = UIButton()
-
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         configureContents()
@@ -227,19 +204,19 @@ class MyCustomHeader: UITableViewHeaderFooterView {
         //image.translatesAutoresizingMaskIntoConstraints = false
         title.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
-
-       // contentView.addSubview(image)
+        
+        // contentView.addSubview(image)
         contentView.addSubview(title)
         contentView.addSubview(button)
-
+        
         // Center the image vertically and place it near the leading
         // edge of the view. Constrain its width and height to 50 points.
         NSLayoutConstraint.activate([
-//            image.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-//            image.widthAnchor.constraint(equalToConstant: 50),
-//            image.heightAnchor.constraint(equalToConstant: 50),
-//            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//
+            //            image.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            //            image.widthAnchor.constraint(equalToConstant: 50),
+            //            image.heightAnchor.constraint(equalToConstant: 50),
+            //            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            //
             // Center the label vertically, and use it to fill the remaining
             // space in the header view.
             title.heightAnchor.constraint(equalToConstant: 30),

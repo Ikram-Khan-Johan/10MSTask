@@ -42,7 +42,7 @@ class CatWiseProductsViewController: UIViewController {
 extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Hello")
-        return Array(productDict)[categoryId].value.count
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,10 +50,6 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatWiseCollectionViewCell", for: indexPath) as! CatWiseCollectionViewCell
         cell.titleLabel.text = product.title
         cell.priceLabel.text = "\(product.price)"
-        //cell.titleLabel.text = "HUrrah"
-        //cell.priceLabel.text = "200"
-//        cell.productImageView.image = UIImage(named: "img_onboarding_4")
-       
         if let url = URL(string: product.image) {
             cell.productImageView.load(url: url)
         }
@@ -65,11 +61,13 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/2, height: 200)
+        return CGSize(width: (collectionView.frame.width/2) - 20, height: 200)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Item Selected ", indexPath)
-        let product = products[indexPath.row];       cvcDelegate?.onSelectItem(product: product)
+        let product = products[indexPath.row]
+        cvcDelegate?.onSelectItem(product: product)
     
     }
     
