@@ -22,7 +22,13 @@ class ProductDetailsViewController: UIViewController {
         super.viewDidLoad()
         productScrollView.contentSize = CGSize(width: productScrollView.contentSize.width, height: 2000)
         showProductDetails()
+        self.title = product?.title
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "", style: .plain, target: nil, action: nil)
     }
     
     func showProductDetails(){

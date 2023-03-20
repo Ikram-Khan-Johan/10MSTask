@@ -14,8 +14,7 @@ class CatWiseProductsViewController: UIViewController {
     var cvcDelegate: CVCDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("I am running")
+        self.title = products[0].category.capitalized
         // Do any additional setup after loading the view.
     }
 
@@ -33,7 +32,6 @@ class CatWiseProductsViewController: UIViewController {
 extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        print("Hello")
         return products.count
     }
     
@@ -61,7 +59,7 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print("Item Selected ", indexPath)
+        //print("Item Selected ", indexPath)
         let product = products[indexPath.row]
         cvcDelegate?.onSelectItem(product: product)
     

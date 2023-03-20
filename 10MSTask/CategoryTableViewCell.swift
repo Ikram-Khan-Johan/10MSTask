@@ -54,8 +54,6 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         
         cell.nameLabel.text = product?.title
         cell.priceLabel.text = "$\(product?.price ?? 0)"
-        //cell.layer.borderColor = UIColor.blue.cgColor
-           // cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 10
         if let url = URL(string: product?.image ?? "") {
             cell.imageView.load(url: url)

@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     let baseURL: String = "https://fakestoreapi.com/products"
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "Ecommerce"
         categoryTableView.register(MyCustomHeader.self,
                                    forHeaderFooterViewReuseIdentifier: "sectionHeader")
         fetchProductData(url: baseURL) { result in
@@ -34,6 +34,11 @@ class MainViewController: UIViewController {
             }
         }
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "", style: .plain, target: nil, action: nil)
     }
     
     func findCategory(products: Products) {
