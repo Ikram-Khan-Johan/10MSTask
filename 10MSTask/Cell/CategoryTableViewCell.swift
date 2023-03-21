@@ -4,7 +4,7 @@
 //
 //  Created by Johan on 16/3/23.
 //
-
+import SDWebImage
 import UIKit
 protocol CVCDelegate {
     func onSelectItem(product: Product)
@@ -21,6 +21,7 @@ class CategoryTableViewCell: UITableViewCell {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         // Initialization code
+        registerCell()
     }
     
     func configureCell(_products: Products) {
@@ -32,6 +33,10 @@ class CategoryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    private func registerCell(){
+
+        categoryCollectionView.register(ProductCollectionViewCell.nib, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
     }
     
     var cvcDelegate: CVCDelegate?
@@ -48,15 +53,15 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         
         let product = products?[indexPath.row]
         
-        cell.nameLabel.text = product?.title
-        cell.priceLabel.text = "$\(product?.price ?? 0)"
+        cell.productTitleLabel.text = product?.title
+        cell.productPriceLabel.text = "$\(product?.price ?? 0)"
         cell.layer.cornerRadius = 10
         if let url = URL(string: product?.image ?? "") {
-            cell.imageView.load(url: url)
+            cell.productImageView.sd_setImage(with: url)
         } else {
             print("image url not found")
         }

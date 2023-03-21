@@ -9,12 +9,14 @@ import UIKit
 
 class CatWiseProductsViewController: UIViewController {
 
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     var products: Products = []
     var categoryId: Int = 0
     var cvcDelegate: CVCDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = products[0].category.capitalized
+        registerCell()
         // Do any additional setup after loading the view.
     }
 
@@ -25,6 +27,10 @@ class CatWiseProductsViewController: UIViewController {
     func categoryId(id: Int){
         self.categoryId = id
         print("Cat id ", categoryId)
+    }
+    private func registerCell(){
+
+        categoryCollectionView.register(ProductCollectionViewCell.nib, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
     }
 
 }
@@ -38,12 +44,12 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let product = products[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatWiseCollectionViewCell", for: indexPath) as! CatWiseCollectionViewCell
-        cell.titleLabel.text = product.title
-        cell.priceLabel.text = "$\(product.price)"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
+        cell.productTitleLabel.text = product.title
+        cell.productPriceLabel.text = "$\(product.price)"
         cell.layer.cornerRadius = 10
         if let url = URL(string: product.image) {
-            cell.productImageView.load(url: url)
+            cell.productImageView.sd_setImage(with: url)
         }
         else {
             print("No Image Found")
@@ -54,7 +60,7 @@ extension CatWiseProductsViewController: UICollectionViewDelegateFlowLayout, UIC
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.frame.width/2) - 20, height: 200)
+        return CGSize(width: (collectionView.frame.width/2) - 20, height: 240)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

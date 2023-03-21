@@ -6,21 +6,20 @@
 //
 
 import UIKit
-//var data = [MovieData(sectionType: "Action", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
-//            MovieData(sectionType: "Science Fiction", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
-//            MovieData(sectionType: "Drama", movies: ["007", "Mission Impossible", "Mission Impossible2"]),
-//            MovieData(sectionType: "Love Story", movies: ["007", "Mission Impossible", "Mission Impossible2"])
-//]
+import SDWebImage
 
 class MainViewController: UIViewController {
     
     var productDict = [String: [Product]]()
     
     @IBOutlet weak var categoryTableView: UITableView!
+    
     var products: Products?
     let baseURL: String = "https://fakestoreapi.com/products"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoryTableView.sectionHeaderTopPadding = 0
         self.navigationItem.title = "Ecommerce"
         categoryTableView.register(MyCustomHeader.self,
                                    forHeaderFooterViewReuseIdentifier: "sectionHeader")
@@ -35,6 +34,8 @@ class MainViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
+   
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -42,6 +43,8 @@ class MainViewController: UIViewController {
     }
     
     func findCategory(products: Products) {
+        
+        
         
         for i in products {
             //print("Hello ",i.id)
@@ -105,7 +108,7 @@ class MainViewController: UIViewController {
 }
 
 
-extension MainViewController: UITableViewDelegate,UITableViewDataSource{
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         //return data.count
@@ -121,6 +124,7 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         let products = Array(productDict)[indexPath.section].value
         cell.configureCell(_products: products)
+        
         cell.cvcDelegate = self
         return cell
         
@@ -128,40 +132,37 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        //tableView.estimatedRowHeight = 200
+        //tableView.rowHeight = UITableView.automaticDimension
+        return 240
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .systemGray5
     }
-    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return Array(productDict)[section].key
-    //    }
+
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        /* let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-         button.backgroundColor = .lightGray
-         button.setTitle("See All >", for: .normal)
-         button.tag = section
-         //button.addTarget(self, action: #selector(self.buttonAction(button:)), for: .touchUpInside)
-         return button*/
+
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
                                                                 "sectionHeader") as! MyCustomHeader
         view.title.text = Array(productDict)[section].key.capitalized
         view.title.font = view.title.font.withSize(20)
+        view.title.font = UIFont.boldSystemFont(ofSize: 17)
         view.title.shadowColor = .white
         view.title.shadowOffset = CGSize(width: 1, height: 1)
-        
+
         //view.button.titleLabel?.text = "See All >"
-        view.button.setTitle("See All >", for: UIControl.State.normal)
-        view.button.setTitleColor(.black, for: UIControl.State.normal)
+        view.button.setTitle("See All", for: UIControl.State.normal)
+        view.button.setTitleColor(.systemBlue, for: UIControl.State.normal)
         view.button.backgroundColor = .white
         view.button.layer.cornerRadius = 15
         view.button.tag = section
         view.button.addTarget(self, action: #selector(self.onClickSeeAllButton(button:)), for: .touchUpInside)
         // view.image.image = UIImage(named: sectionImages[section])
-        
+
         return view
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
@@ -180,6 +181,7 @@ extension MainViewController: CVCDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
 struct MovieData {
     let sectionType: String
     let movies: [String]
