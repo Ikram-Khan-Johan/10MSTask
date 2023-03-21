@@ -26,16 +26,12 @@ class MainViewController: UIViewController {
         fetchProductData(url: baseURL) { result in
             self.products = result
             self.findCategory(products: self.products!)
-            //print(self.products![7].category )
-            //print("Ta da", categories)
             DispatchQueue.main.async {
                 self.categoryTableView.reloadData()
             }
         }
-        // Do any additional setup after loading the view.
     }
-   
-    
+       
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backBarButtonItem = UIBarButtonItem(
@@ -43,8 +39,6 @@ class MainViewController: UIViewController {
     }
     
     func findCategory(products: Products) {
-        
-        
         
         for i in products {
             //print("Hello ",i.id)
@@ -54,9 +48,7 @@ class MainViewController: UIViewController {
             } else {
                 productDict[i.category]?.append(i)
             }
-            //print(keyExists, i.id)
         }
-        
     }
     
     @objc func onClickSeeAllButton(button: UIButton){
@@ -132,8 +124,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //tableView.estimatedRowHeight = 200
-        //tableView.rowHeight = UITableView.automaticDimension
         return 240
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -151,15 +141,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         view.title.shadowColor = .white
         view.title.shadowOffset = CGSize(width: 1, height: 1)
 
-        //view.button.titleLabel?.text = "See All >"
         view.button.setTitle("See All", for: UIControl.State.normal)
         view.button.setTitleColor(.systemBlue, for: UIControl.State.normal)
         view.button.backgroundColor = .white
         view.button.layer.cornerRadius = 15
         view.button.tag = section
         view.button.addTarget(self, action: #selector(self.onClickSeeAllButton(button:)), for: .touchUpInside)
-        // view.image.image = UIImage(named: sectionImages[section])
-
         return view
     }
     
@@ -181,27 +168,3 @@ extension MainViewController: CVCDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
-
-struct MovieData {
-    let sectionType: String
-    let movies: [String]
-}
-
-extension UIImageView {
-    
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-
-

@@ -27,13 +27,6 @@ struct Product: Codable {
     }
 }
 
-enum Category: String, Codable {
-    case electronics = "electronics"
-    case jewelery = "jewelery"
-    case menSClothing = "men's clothing"
-    case womenSClothing = "women's clothing"
-}
-
 // MARK: - Rating
 struct Rating: Codable {
     let rate: Double
@@ -46,11 +39,3 @@ struct Rating: Codable {
 }
 
 typealias Products = [Product]
-
-
-struct ProductWithCategory {
-    let name: String
-    let products: [Products]
-}
-
-
