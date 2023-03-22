@@ -9,9 +9,9 @@ import UIKit
 import SDWebImage
 
 class MainViewController: UIViewController {
-    
+    let refreshControl = UIRefreshControl()
     var productDict = [String: [Product]]()
-    
+    var loader: UIAlertController! = nil
     @IBOutlet weak var categoryTableView: UITableView!
     
     var products: Products?
@@ -19,14 +19,20 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.attributedTitle = NSAttributedString("")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_sender:)), for: .valueChanged)
+        categoryTableView.addSubview(refreshControl)
         categoryTableView.sectionHeaderTopPadding = 0
         self.navigationItem.title = "Ecommerce"
         categoryTableView.register(MyCustomHeader.self,
                                    forHeaderFooterViewReuseIdentifier: "sectionHeader")
-        fetchProductData(url: baseURL) { result in
+        self.loader = self.loader()
+        fetchProductData(url: baseURL) { [weak self] result in
+            guard let self = self else {return}
             self.products = result
             self.findCategory(products: self.products!)
             DispatchQueue.main.async {
+                self.stopLoader(loader: self.loader)
                 self.categoryTableView.reloadData()
             }
         }
@@ -36,6 +42,20 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "", style: .plain, target: nil, action: nil)
+    }
+    @objc func refresh(_sender: AnyObject) {
+        //self.loader = loader()
+        fetchProductData(url: baseURL) { [weak self] result in
+            guard let self = self else {return}
+            self.products = result
+            self.findCategory(products: self.products!)
+            DispatchQueue.main.async {
+               
+                self.categoryTableView.reloadData()
+                //self.stopLoader(loader: self.loader)
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     func findCategory(products: Products) {
